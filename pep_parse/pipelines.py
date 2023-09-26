@@ -27,7 +27,8 @@ class PepParsePipeline:
         result = self.peps.items()
         total = sum(self.peps.values())
         with open(file_path, 'w', encoding='utf-8') as f:
-            f.write('Статус, Количество\n')
-            for status, amount in result:
-                f.write(f'{status}, {amount}\n')
-            f.write(f'Total, {total}\n')
+            f.writelines([
+                'Статус, Количество\n',
+                *[f'{status}, {amount}\n' for status, amount in result],
+                f'Total, {total}\n'
+            ])
