@@ -21,9 +21,9 @@ class PepSpider(scrapy.Spider):
         """Метод парсит информацию о PEP."""
         data = {
             'number': response.css('h1.page-title::text').get().split(' ')[1],
-            'name': ' '.join(
-                response.css('h1.page-title::text').get().split()
-            ),
+            'name': ''.join(
+                response.css('h1.page-title::text').get()
+            ).strip(),
             'status': response.css('abbr::text').get(),
         }
         yield PepParseItem(data)
