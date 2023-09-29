@@ -20,7 +20,7 @@ class PepSpider(scrapy.Spider):
     def parse_pep(self, response):
         """Метод парсит информацию о PEP."""
         data = {
-            'number': response.css('h1.page-title::text').get(),
+            'number': response.css('h1.page-title::text').get().split(' ')[1],
             'name': ' '.join(
                 response.css('h1.page-title::text').get().split()
             ),
